@@ -57,6 +57,5 @@ with tab3:
             st.success(msg, icon="✅")
 
     resource_list = get_all_resources()
-    resource_list.columns = ['Name', 'Rate']
     st.dataframe(resource_list.style.format({"Rate": "{:.2f}"}), use_container_width=True)
 
