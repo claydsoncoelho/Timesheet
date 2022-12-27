@@ -19,7 +19,7 @@ def get_all_resources(cnx):
         sql_cmd = "SELECT * FROM DB_TIMESHEET.PUBLIC.RESOURCES"
         my_cur.execute(sql_cmd)
         my_data = pd.DataFrame(my_cur.fetchall())
-    return pd.DataFrame(my_data)
+    return my_data
     #return pd.DataFrame(my_data)
     #return my_cur.fetchall()
 
