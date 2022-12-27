@@ -5,8 +5,6 @@ import snowflake
 # streamlit run /Users/claydsoncoelho/Documents/GitHub/Timesheet/Timesheet.py
 
 tab1, tab2, tab3 = st.tabs(["Time Entry", "Reports", "Resources"])
-name_list = []
-rate_list = []
 
 
 def insert_resource(cnx, name, rate):
@@ -36,12 +34,12 @@ with tab3:
     name = st.text_input('Name')
     rate = st.number_input('Rate')
 
+    my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+    resource_list = get_all_resources(my_cnx)
+
     if name and rate:
-        my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
         msg = insert_resource(my_cnx, name, rate)
         st.write(msg)
-        resource_list = get_all_resources(my_cnx)
-
 
     def load_data():
         return pd.DataFrame(resource_list)
