@@ -11,7 +11,7 @@ def insert_resource(cnx, name, rate):
     with cnx.cursor() as my_cur:
         sql_cmd = "INSERT INTO DB_TIMESHEET.PUBLIC.RESOURCES VALUES('" + name + "', " + str(rate) + ")"
         my_cur.execute(sql_cmd)
-    return name + " | " + str(rate) + " added."
+    return name + " | " + str(rate)
 
 
 def get_all_resources(cnx):
@@ -40,7 +40,7 @@ with tab3:
     if st.button('Save resource'):
         if  name and rate:
             msg = insert_resource(my_cnx, name, rate)
-            st.write(msg)
+            st.success(msg, icon="✅")
     
     resource_list = get_all_resources(my_cnx)
     st.dataframe(resource_list, use_container_width=True)
