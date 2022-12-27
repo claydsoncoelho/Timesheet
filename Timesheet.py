@@ -23,9 +23,10 @@ def get_all_resources():
         my_cur.execute(sql_cmd)
         #my_data = pd.DataFrame(my_cur.fetchall())
         my_data = my_cur.fetchall()
-        #st.write(my_data)
-        for row in my_data:
-            st.write(row[1])
+        my_data = pd.DataFrame(my_data)
+        st.write(my_data)
+        #for row in my_data:
+        #    st.write(row[1])
     cnx.close()
     return my_data
 
