@@ -38,14 +38,10 @@ with tab3:
     my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
     resource_list = get_all_resources(my_cnx)
 
+    st.dataframe(resource_list, use_container_width=True)
+    
     if name and rate:
         msg = insert_resource(my_cnx, name, rate)
         st.write(msg)
-
-    def load_data():
-        return pd.DataFrame(resource_list)
-
-    df = load_data()
-    st.dataframe(resource_list, use_container_width=True)
 
     my_cnx.close()
