@@ -22,6 +22,7 @@ def get_all_resources():
         sql_cmd = "SELECT * FROM DB_TIMESHEET.PUBLIC.RESOURCES"
         my_cur.execute(sql_cmd)
         my_data = pd.DataFrame(my_cur.fetchall())
+        st.write(my_data)
     cnx.close()
     return my_data
 
@@ -46,6 +47,6 @@ with tab3:
 
     resource_list = get_all_resources()
     resource_list.columns = ['Name', 'Rate']
-    resource_list['Rate'] = resource_list['Rate'].apply(lambda x: x * 0.01)
+    #resource_list['Rate'] = resource_list['Rate'].apply(lambda x: x * 0.01)
     st.dataframe(resource_list, use_container_width=True)
 
