@@ -39,7 +39,7 @@ with tab3:
     name = st.text_input("Name", value="", key="Name")
     rate = st.number_input("Rate", value=0.00, key="Rate")
 
-    if st.button("Save resource", on_click=save_resource):
+    if st.button("Save resource"):
         if name and rate:
             msg = insert_resource(name, rate)
             st.success(msg, icon="✅")
