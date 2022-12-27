@@ -37,7 +37,7 @@ with tab3:
 
     my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
     
-    if name and rate:
+    if streamlit.button('Save resource') and name and rate:
         msg = insert_resource(my_cnx, name, rate)
         st.write(msg)
     
