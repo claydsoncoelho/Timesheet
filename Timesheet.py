@@ -21,4 +21,4 @@ with tab2:
     st.header("A dog")
     st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
 
- my_cnx.close()
+my_cnx.close()
