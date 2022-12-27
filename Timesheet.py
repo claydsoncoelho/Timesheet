@@ -29,10 +29,13 @@ def get_all_resources():
             name_list.append(row[0])
             rate_list.append(row[1])
             st.write(row[1])
+        st.write(rate_list)
+        rate_list1 = [1.23, 4.65, 7.43]
+        st.write(rate_list1)
         my_data = pd.DataFrame(
             {
                 "Name": ['a', 'b', 'c'],
-                "Rate": [1.23, 4.65, 7.43]
+                "Rate": rate_list1
             }
         )
         st.write(my_data)
