@@ -17,7 +17,7 @@ def insert_resource(cnx, name, rate):
 def get_all_resources(cnx):
     with cnx.cursor() as my_cur:
         #sql_cmd = "SELECT * FROM DB_TIMESHEET.PUBLIC.RESOURCES"
-        sql_cmd = "select current_account()"
+        sql_cmd = "select * from fruit_load_list"
         my_cur.execute(sql_cmd)
     return pd.DataFrame(my_cur.fetchall())
     #return my_cur.fetchall()
