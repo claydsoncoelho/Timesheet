@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import snowflake.connector
+#import snowflake.connector
 
 # streamlit run /Users/claydsoncoelho/Documents/GitHub/Timesheet/Timesheet.py
 
