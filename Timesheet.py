@@ -16,7 +16,8 @@ def insert_resource(cnx, name, rate):
 
 def get_all_resources(cnx):
     with cnx.cursor() as my_cur:
-        sql_cmd = "SELECT * FROM DB_TIMESHEET.PUBLIC.RESOURCES"
+        #sql_cmd = "SELECT * FROM DB_TIMESHEET.PUBLIC.RESOURCES"
+        sql_cmd = "select current_account()"
         my_cur.execute(sql_cmd)
     return my_cur.fetchall()
 
@@ -47,3 +48,5 @@ with tab3:
 
     df = load_data()
     st.dataframe(resource_list)
+
+    my_cnx.close()
