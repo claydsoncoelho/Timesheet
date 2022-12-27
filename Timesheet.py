@@ -28,13 +28,13 @@ def get_all_resources():
         for row in my_data:
             name_list.append(row[0])
             rate_list.append(row[1])
+            st.write(row[1])
         my_data = pd.DataFrame(
             {
                 "Name": name_list,
                 "Rate": rate_list,
             }
         )
-        st.write(rate_list)
         st.write(my_data)
 
     cnx.close()
