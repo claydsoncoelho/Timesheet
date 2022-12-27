@@ -21,21 +21,16 @@ def get_all_resources():
     with cnx.cursor() as my_cur:
         sql_cmd = "SELECT NAME, RATE FROM DB_TIMESHEET.PUBLIC.RESOURCES"
         my_cur.execute(sql_cmd)
-        #my_data = pd.DataFrame(my_cur.fetchall())
         my_data = my_cur.fetchall()
         name_list = []
         rate_list = []
         for row in my_data:
             name_list.append(row[0])
             rate_list.append(float(row[1]))
-            st.write(row[1])
-        st.write(rate_list)
-        rate_list1 = [1.23, 4.65, 7.43]
-        st.write(rate_list1)
         my_data = pd.DataFrame(
             {
                 "Name": name_list,
-                "Rate": rate_list1
+                "Rate": rate_list
             }
         )
         st.write(my_data)
