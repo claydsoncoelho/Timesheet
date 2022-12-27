@@ -39,14 +39,10 @@ with tab3:
     name = st.text_input("Name", value="", key="Name")
     rate = st.number_input("Rate", value=0.00, key="Rate")
 
-    def save_resource():
+    if st.button("Save resource", on_click=save_resource):
         if name and rate:
             msg = insert_resource(name, rate)
             st.success(msg, icon="✅")
-            st.session_state["Name"] = ""
-            st.session_state["Rate"] = 0.00
-
-    st.button("Save resource", on_click=save_resource)
 
     resource_list = get_all_resources()
     st.dataframe(resource_list, use_container_width=True)
