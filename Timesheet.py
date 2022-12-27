@@ -27,7 +27,7 @@ def get_all_resources():
         rate_list = []
         for row in my_data:
             name_list.append(row[0])
-            rate_list.append(row[1])
+            rate_list.append(float(row[1]))
             st.write(row[1])
         st.write(rate_list)
         rate_list1 = [1.23, 4.65, 7.43]
