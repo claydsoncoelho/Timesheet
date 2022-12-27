@@ -34,6 +34,7 @@ def get_all_resources():
                 "Rate": rate_list,
             }
         )
+        st.write(rate_list)
         st.write(my_data)
 
     cnx.close()
