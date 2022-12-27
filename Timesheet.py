@@ -23,10 +23,19 @@ def get_all_resources():
         my_cur.execute(sql_cmd)
         #my_data = pd.DataFrame(my_cur.fetchall())
         my_data = my_cur.fetchall()
-        my_data = pd.DataFrame(my_data)
+        name_list = []
+        rate_list = []
+        for row in my_data:
+            name_list.append(row[0])
+            rate_list.append(row[1])
+        my_data = pd.DataFrame(
+            {
+                "Name": name_list,
+                "Rate": rate_list,
+            }
+        )
         st.write(my_data)
-        #for row in my_data:
-        #    st.write(row[1])
+
     cnx.close()
     return my_data
 
