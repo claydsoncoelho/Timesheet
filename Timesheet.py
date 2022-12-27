@@ -27,6 +27,7 @@ def get_all_resources():
         for row in my_data:
             name_list.append(row[0])
             rate_list.append(float(row[1]))
+        st.write(rate_list)
         my_data = pd.DataFrame(
             {
                 "Name": name_list,
