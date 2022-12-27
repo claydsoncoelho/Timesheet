@@ -9,12 +9,13 @@ name_list = []
 rate_list = []
 
 
-def insert_row_snowflake(cnx, name, rate):
-  with cnx.cursor() as my_cur:
-    sql_cmd = "INSERT INTO DB_TIMESHEET.PUBLIC.RESOURCES VALUES('" + name + "', " + str(rate) + ")"
-    st.write(sql_cmd)
-    my_cur.execute(sql_cmd)
-    return "Thanks for adding " + name
+def insert_resource(cnx, name, rate):
+    with cnx.cursor() as my_cur:
+        sql_cmd = "INSERT INTO DB_TIMESHEET.PUBLIC.RESOURCES VALUES('" + name + "', " + str(rate) + ")"
+        st.write(sql_cmd)
+        my_cur.execute(sql_cmd)
+    return "Thanks for adding " + name + ", " + str(rate) + "!"
+
 
 with tab1:
     st.header("A cat")
@@ -31,7 +32,7 @@ with tab3:
 
     if name and rate:
         my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
-        msg = insert_row_snowflake(my_cnx, name, rate)
+        msg = insert_resource(my_cnx, name, rate)
         st.write(msg)
 
 
