@@ -1,12 +1,19 @@
 import streamlit as st
 import pandas as pd
-#import snowflake.connector
+import snowflake.connector
 
 # streamlit run /Users/claydsoncoelho/Documents/GitHub/Timesheet/Timesheet.py
 
 tab1, tab2, tab3 = st.tabs(["Time Entry", "Reports", "Resources"])
 name_list = []
 rate_list = []
+
+
+def insert_row_snowflake(cnx, name, rate):
+  with cnx.cursor() as my_cur:
+    sql_cmd = "INSERT INTO DB_TIMESHEET.PUBLIC.RESOURCES VALUES('" + name + "', " + rate + ")"
+    my_cur.execute(sql_cmd)
+    return "Thanks for adding " + name
 
 with tab1:
     st.header("A cat")
@@ -22,8 +29,9 @@ with tab3:
     rate = st.number_input('Rate')
 
     if name and rate:
-        name_list.append(name)
-        rate_list.append(rate)
+        my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+        msg = insert_row_snowflake(my_cnx, name, rate)
+        st.write(msg)
 
 
     def load_data():
