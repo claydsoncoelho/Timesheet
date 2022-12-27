@@ -19,7 +19,7 @@ def insert_resource(name, rate):
 def get_all_resources():
     cnx = snowflake.connector.connect(**st.secrets["snowflake"])
     with cnx.cursor() as my_cur:
-        sql_cmd = "SELECT NAME, RATE FROM DB_TIMESHEET.PUBLIC.RESOURCES"
+        sql_cmd = "SELECT * FROM DB_TIMESHEET.PUBLIC.RESOURCES"
         my_cur.execute(sql_cmd)
         my_data = pd.DataFrame(my_cur.fetchall())
         #st.write(my_data)
