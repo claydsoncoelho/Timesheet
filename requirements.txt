@@ -1,1 +1,4 @@
 snowflake-connector-python
+streamlit~=1.16.0
+pandas~=1.5.2
+pysnowflake~=0.1.3

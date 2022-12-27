@@ -12,6 +12,7 @@ rate_list = []
 def insert_row_snowflake(cnx, name, rate):
   with cnx.cursor() as my_cur:
     sql_cmd = "INSERT INTO DB_TIMESHEET.PUBLIC.RESOURCES VALUES('" + name + "', " + rate + ")"
+    st.write(sql_cmd)
     my_cur.execute(sql_cmd)
     return "Thanks for adding " + name
 
