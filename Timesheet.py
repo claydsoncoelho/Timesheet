@@ -12,9 +12,15 @@ rate_list = []
 def insert_resource(cnx, name, rate):
     with cnx.cursor() as my_cur:
         sql_cmd = "INSERT INTO DB_TIMESHEET.PUBLIC.RESOURCES VALUES('" + name + "', " + str(rate) + ")"
-        st.write(sql_cmd)
         my_cur.execute(sql_cmd)
-    return "Thanks for adding " + name + ", " + str(rate) + "!"
+    return "Thanks for adding " + name + " - " + str(rate) + "."
+
+
+def get_all_resources(cnx):
+    with cnx.cursor() as my_cur:
+        sql_cmd = "SELECT * FROM DB_TIMESHEET.PUBLIC.RESOURCES"
+        my_cur.execute(sql_cmd)
+    return my_cur.fetchall()
 
 
 with tab1:
@@ -34,15 +40,11 @@ with tab3:
         my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
         msg = insert_resource(my_cnx, name, rate)
         st.write(msg)
+        resource_list = get_all_resources(my_cnx)
 
 
     def load_data():
-        return pd.DataFrame(
-            {
-                "Name": name_list,
-                "Rate": rate_list
-            }
-        )
+        return pd.DataFrame(resource_list)
 
     df = load_data()
     st.dataframe(df, use_container_width=True)
