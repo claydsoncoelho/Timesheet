@@ -11,7 +11,7 @@ def insert_resource(cnx, name, rate):
     with cnx.cursor() as my_cur:
         sql_cmd = "INSERT INTO DB_TIMESHEET.PUBLIC.RESOURCES VALUES('" + name + "', " + str(rate) + ")"
         my_cur.execute(sql_cmd)
-    return "Thanks for adding " + name + " - " + str(rate) + "."
+    return name + " | " + str(rate) + " added."
 
 
 def get_all_resources(cnx):
