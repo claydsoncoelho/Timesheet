@@ -41,8 +41,8 @@ with tab3:
         if name and rate:
             msg = insert_resource(my_cnx, name, rate)
             st.success(msg, icon="✅")
-            st.session_state.name = ""
-            st.session_state.rate = ""
+            st.session_state["Name"] = ''
+            st.session_state["Rate"] = ''
     
     resource_list = get_all_resources(my_cnx)
     st.dataframe(resource_list, use_container_width=True)
