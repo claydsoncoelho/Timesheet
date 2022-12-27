@@ -32,8 +32,8 @@ with tab2:
 
 with tab3:
     st.header("Resources")
-    name = st.text_input('Name')
-    rate = st.number_input('Rate')
+    name = st.text_input('Name', key='name')
+    rate = st.number_input('Rate', key='rate')
 
     my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
     
@@ -41,8 +41,8 @@ with tab3:
         if name and rate:
             msg = insert_resource(my_cnx, name, rate)
             st.success(msg, icon="✅")
-            st.session_state["Name"] = ''
-            st.session_state["Rate"] = ''
+            st.session_state["name"] = ''
+            st.session_state["rate"] = ''
     
     resource_list = get_all_resources(my_cnx)
     st.dataframe(resource_list, use_container_width=True)
