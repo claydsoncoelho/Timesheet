@@ -37,9 +37,10 @@ with tab3:
 
     my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
     
-    if streamlit.button('Save resource') and name and rate:
-        msg = insert_resource(my_cnx, name, rate)
-        st.write(msg)
+    if streamlit.button('Save resource'):
+        if  name and rate:
+            msg = insert_resource(my_cnx, name, rate)
+            st.write(msg)
     
     resource_list = get_all_resources(my_cnx)
     st.dataframe(resource_list, use_container_width=True)
