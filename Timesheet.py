@@ -31,8 +31,8 @@ def get_all_resources():
             st.write(row[1])
         my_data = pd.DataFrame(
             {
-                "Name": name_list,
-                "Rate": rate_list,
+                "Name": ['a', 'b', 'c'],
+                "Rate": [1.23, 4.65, 7.43]
             }
         )
         st.write(my_data)
