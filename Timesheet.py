@@ -36,8 +36,8 @@ with tab2:
 
 with tab3:
     st.header("Resources")
-    name = st.text_input("Name", key="Name")
-    rate = st.number_input("Rate", key="Rate")
+    name = st.text_input("Name", value="", key="Name")
+    rate = st.number_input("Rate", value=0.00, key="Rate")
 
     def save_resource():
         if name and rate:
