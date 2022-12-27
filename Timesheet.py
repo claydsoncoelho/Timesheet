@@ -22,7 +22,7 @@ def get_all_resources():
         sql_cmd = "SELECT NAME, RATE FROM DB_TIMESHEET.PUBLIC.RESOURCES"
         my_cur.execute(sql_cmd)
         #my_data = pd.DataFrame(my_cur.fetchall())
-        my_data = my_cur.fechall()
+        my_data = my_cur.fetchall()
         st.write(my_data)
         for row in my_data:
             st.write(f"{row[0]} has a :{row[1]}:")
