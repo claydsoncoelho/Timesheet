@@ -4,7 +4,7 @@ import snowflake.connector
 
 # streamlit run /Users/claydsoncoelho/Documents/GitHub/Timesheet/Timesheet.py
 
-tab1, tab2, tab3 = st.tabs(["Time Entry", "Reports", "Resources"])
+tab1, tab2, tab3 = st.tabs(["Time Entry", "Reports", "Team"])
 
 
 def insert_resource(name, rate):
@@ -35,11 +35,11 @@ with tab2:
     st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
 
 with tab3:
-    st.header("Resources")
+    st.header("Team")
     name = st.text_input("Name", value="", key="Name")
     rate = st.number_input("Rate", value=0.00, key="Rate")
 
-    if st.button("Save resource"):
+    if st.button("Save member"):
         if name and rate:
             msg = insert_resource(name, rate)
             st.success(msg, icon="✅")
