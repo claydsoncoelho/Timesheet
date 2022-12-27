@@ -1,9 +1,12 @@
 import streamlit as st
 import pandas as pd
+import snowflake.connector
 
 # streamlit run /Users/claydsoncoelho/Documents/GitHub/Timesheet/Timesheet.py
 
 tab1, tab2, tab3 = st.tabs(["Time Entry", "Reports", "Resources"])
+name_list = []
+rate_list = []
 
 with tab1:
     st.header("A cat")
@@ -18,13 +21,16 @@ with tab3:
     name = st.text_input('Name')
     rate = st.number_input('Rate')
 
-    # Cache the dataframe so it's only loaded once
-    @st.experimental_memo
+    if name and rate:
+        name_list.append(name)
+        rate_list.append(rate)
+
+
     def load_data():
         return pd.DataFrame(
             {
-                "first column": [1, 2, 3, 4],
-                "second column": [10, 20, 30, 40],
+                "Name": name_list,
+                "Rate": rate_list
             }
         )
 
