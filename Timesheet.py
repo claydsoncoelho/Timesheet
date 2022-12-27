@@ -7,18 +7,22 @@ import snowflake.connector
 tab1, tab2, tab3 = st.tabs(["Time Entry", "Reports", "Resources"])
 
 
-def insert_resource(cnx, name, rate):
+def insert_resource(name, rate):
+    cnx = snowflake.connector.connect(**st.secrets["snowflake"])
     with cnx.cursor() as my_cur:
         sql_cmd = "INSERT INTO DB_TIMESHEET.PUBLIC.RESOURCES VALUES('" + name + "', " + str(rate) + ")"
         my_cur.execute(sql_cmd)
+    cnx.close()
     return name + " | " + str(rate)
 
 
-def get_all_resources(cnx):
+def get_all_resources():
+    cnx = snowflake.connector.connect(**st.secrets["snowflake"])
     with cnx.cursor() as my_cur:
         sql_cmd = "SELECT * FROM DB_TIMESHEET.PUBLIC.RESOURCES"
         my_cur.execute(sql_cmd)
         my_data = pd.DataFrame(my_cur.fetchall())
+    cnx.close()
     return my_data
 
 
@@ -35,18 +39,15 @@ with tab3:
     name = st.text_input("Name", key="Name")
     rate = st.number_input("Rate", key="Rate")
 
-    my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
-
     def save_resource():
         if name and rate:
-            msg = insert_resource(my_cnx, name, rate)
+            msg = insert_resource(name, rate)
             st.success(msg, icon="✅")
             st.session_state["Name"] = ""
             st.session_state["Rate"] = ""
 
     st.button("Save resource", on_click=save_resource)
 
-    resource_list = get_all_resources(my_cnx)
+    resource_list = get_all_resources()
     st.dataframe(resource_list, use_container_width=True)
 
-    my_cnx.close()
