@@ -7,6 +7,5 @@ def clear_text():
     st.session_state["text"] = ""
 
 
-if st.button("clear text input"):
+if st.button("clear text input", on_click=clear_text):
     st.write(input)
-    clear_text()
