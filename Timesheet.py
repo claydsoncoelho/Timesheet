@@ -42,7 +42,6 @@ with tab3:
 
     my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
     resource_list = get_all_resources(my_cnx)
-    st.write(resource_list)
 
     if name and rate:
         msg = insert_resource(my_cnx, name, rate)
