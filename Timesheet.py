@@ -21,7 +21,7 @@ def get_all_resources():
     with cnx.cursor() as my_cur:
         sql_cmd = "SELECT NAME, RATE FROM DB_TIMESHEET.PUBLIC.RESOURCES"
         my_cur.execute(sql_cmd)
-        my_data = pd.DataFrame(my_cur.fetch_pandas_all())
+        my_data = pd.DataFrame(my_cur.fetchall())
         #st.write(my_data)
     cnx.close()
     return my_data
