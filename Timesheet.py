@@ -45,5 +45,6 @@ with tab3:
             st.success(msg, icon="✅")
 
     resource_list = get_all_resources()
+    resource_list = resource_list.set_index('Name', 'Rate')
     st.dataframe(resource_list, use_container_width=True)
 
