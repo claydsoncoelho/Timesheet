@@ -46,6 +46,6 @@ with tab3:
         return pd.DataFrame(resource_list)
 
     df = load_data()
-    st.dataframe(resource_list)
+    st.dataframe(resource_list, use_container_width=True)
 
     my_cnx.close()
