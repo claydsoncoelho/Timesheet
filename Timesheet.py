@@ -36,12 +36,12 @@ with tab3:
     rate = st.number_input('Rate')
 
     my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
-    resource_list = get_all_resources(my_cnx)
     
     if name and rate:
         msg = insert_resource(my_cnx, name, rate)
         st.write(msg)
-        
+    
+    resource_list = get_all_resources(my_cnx)
     st.dataframe(resource_list, use_container_width=True)
 
     my_cnx.close()
