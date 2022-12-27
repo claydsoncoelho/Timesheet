@@ -13,7 +13,7 @@ with my_cnx.cursor() as my_cur:
 
 st.dataframe(my_data)
 
-with cnx.cursor() as my_cur:
+with my_cnx.cursor() as my_cur:
     my_cur.execute("select * from fruit_load_list")
     #my_cur.execute("SELECT * FROM DB_TIMESHEET.PUBLIC.RESOURCES")
     my_data = my_cur.fetchall()
