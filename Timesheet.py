@@ -44,7 +44,7 @@ with tab3:
             msg = insert_resource(name, rate)
             st.success(msg, icon="✅")
             st.session_state["Name"] = ""
-            st.session_state["Rate"] = ""
+            st.session_state["Rate"] = 0.00
 
     st.button("Save resource", on_click=save_resource)
 
