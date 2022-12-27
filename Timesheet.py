@@ -19,11 +19,7 @@ def get_all_resources(cnx):
         #sql_cmd = "SELECT * FROM DB_TIMESHEET.PUBLIC.RESOURCES"
         sql_cmd = "select current_account()"
         my_cur.execute(sql_cmd)
-    return pd.DataFrame(
-        {
-            "first column": [1, 2, 3, 4],
-            "second column": [10, 20, 30, 40],
-        })
+    return pd.DataFrame(my_cur.fetchall())
     #return my_cur.fetchall()
 
 
