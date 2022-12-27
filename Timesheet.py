@@ -22,7 +22,6 @@ def get_all_resources():
         sql_cmd = "SELECT * FROM DB_TIMESHEET.PUBLIC.RESOURCES"
         my_cur.execute(sql_cmd)
         my_data = pd.DataFrame(my_cur.fetchall())
-        st.write(my_data)
     cnx.close()
     return my_data
 
