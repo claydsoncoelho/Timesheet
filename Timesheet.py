@@ -5,7 +5,7 @@ import snowflake.connector
 # streamlit run /Users/claydsoncoelho/Documents/GitHub/Timesheet/Timesheet.py
 
 my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
-with cnx.cursor() as my_cur:
+with my_cnx.cursor() as my_cur:
     #sql_cmd = "SELECT * FROM DB_TIMESHEET.PUBLIC.RESOURCES"
     sql_cmd = "select * from fruit_load_list"
     my_cur.execute(sql_cmd)
