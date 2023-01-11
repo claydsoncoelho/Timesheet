@@ -66,17 +66,24 @@ with tab3:
     selected_row = grid_table["selected_rows"]
     st.dataframe(selected_row)
     
-    if len(selected_row) > 1:
-        st.session_state.disabled = True
+    if len(selected_row) = 0:
+        st.session_state.disabled_delete = True
+    elif len(selected_row) > 1:
+        st.session_state.disabled_save = True
     else:
-        st.session_state.disabled = False
+        st.session_state.disabled_save = False
 
     if 'save_button' not in st.session_state:
-        st.session_state.disabled = False
+        st.session_state.disabled_save = False
         
-    save_button = st.button("Save member", key='save_button', disabled=st.session_state.disabled)
+    save_button = st.button("Save member", key='save_button', disabled=st.session_state.disabled_save)
     
     if save_button:
         if name and rate:
             msg = insert_resource(name, rate)
             st.success(msg, icon="✅")
+            
+    if 'delete_button' not in st.session_state:
+        st.session_state.disabled_save = True
+        
+    delete_button = st.button("Delete member", key='delete_button', disabled=st.session_state.disabled_delete)
