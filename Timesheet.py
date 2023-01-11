@@ -74,3 +74,9 @@ with tab3:
     st.dataframe(selected_row)
     
     st.write(type(selected_row))
+    st.write(selected_row.len())
+    
+    if selected_row.len() > 1:
+        st.session_state.disabled = True
+    else:
+        st.session_state.disabled = False
