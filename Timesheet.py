@@ -92,4 +92,4 @@ with tab3:
     delete_button = st.button("Delete member", key='delete_button', disabled=st.session_state.disabled_delete)
     
     if delete_button:
-        st.write(selected_row[0])
+        st.write(selected_row[0]["Name"])
