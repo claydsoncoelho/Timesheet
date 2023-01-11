@@ -52,8 +52,10 @@ with tab3:
     st.header("Team")
     name = st.text_input("Name", value="", key="Name")
     rate = st.number_input("Rate", value=0.00, key="Rate")
-
-    if st.button("Save member"):
+    
+    save_button = st.button("Save member")
+    
+    if save_button:
         if name and rate:
             msg = insert_resource(name, rate)
             st.success(msg, icon="✅")
