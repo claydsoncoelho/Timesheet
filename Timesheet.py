@@ -68,11 +68,14 @@ with tab3:
     
     if len(selected_row) == 0:
         st.session_state.disabled_delete = True
+        st.session_state.disabled_save = False
+    elif len(selected_row) == 1:
+        st.session_state.disabled_delete = False
+        st.session_state.disabled_save = False
     elif len(selected_row) > 1:
         st.session_state.disabled_save = True
-    else:
-        st.session_state.disabled_save = False
-
+        st.session_state.disabled_delete = False
+        
     if 'save_button' not in st.session_state:
         st.session_state.disabled_save = False
         
