@@ -90,3 +90,6 @@ with tab3:
         st.session_state.disabled_save = True
         
     delete_button = st.button("Delete member", key='delete_button', disabled=st.session_state.disabled_delete)
+    
+    if delete_button:
+        st.write(selected_row)
