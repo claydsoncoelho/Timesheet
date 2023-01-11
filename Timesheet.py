@@ -53,7 +53,7 @@ with tab3:
     name = st.text_input("Name", value="", key="Name")
     rate = st.number_input("Rate", value=0.00, key="Rate")
     
-    save_button = st.button("Save member")
+    save_button = st.button("Save member", disabled=st.session_state.disabled)
     
     if save_button:
         if name and rate:
