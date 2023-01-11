@@ -72,3 +72,5 @@ with tab3:
     st.write('## Selected')
     selected_row = grid_table["selected_rows"]
     st.dataframe(selected_row)
+    
+    st.write(type(selected_row))
