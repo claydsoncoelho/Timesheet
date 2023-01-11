@@ -18,6 +18,15 @@ def insert_resource(name, rate):
     return name + " | " + str(rate)
 
 
+def delete_resource(name):
+    cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+    with cnx.cursor() as my_cur:
+        sql_cmd = "DELETE FROM TIMESHEET_DB.PUBLIC.RESOURCES WHERE NAME = '" + name + "'"
+        my_cur.execute(sql_cmd)
+    cnx.close()
+    return "Resources deleted."
+
+
 def get_all_resources():
     cnx = snowflake.connector.connect(**st.secrets["snowflake"])
     with cnx.cursor() as my_cur:
@@ -61,10 +70,6 @@ with tab3:
     gridoptions = gd.build()
 
     grid_table = AgGrid(resource_list, gridOptions=gridoptions, update_mode=GridUpdateMode.SELECTION_CHANGED)
-
-    st.write('## Selected')
-    selected_row = grid_table["selected_rows"]
-    st.dataframe(selected_row)
     
     if len(selected_row) == 0:
         st.session_state.disabled_delete = True
@@ -93,4 +98,5 @@ with tab3:
     
     if delete_button:
         for row in selected_row:
-            st.write(row["Name"])
+            msg = delete_resource(row["Name"])
+        st.success(msg, icon="✅")
