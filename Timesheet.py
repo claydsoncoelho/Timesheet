@@ -66,7 +66,7 @@ with tab3:
     selected_row = grid_table["selected_rows"]
     st.dataframe(selected_row)
     
-    if len(selected_row) = 0:
+    if len(selected_row) == 0:
         st.session_state.disabled_delete = True
     elif len(selected_row) > 1:
         st.session_state.disabled_save = True
