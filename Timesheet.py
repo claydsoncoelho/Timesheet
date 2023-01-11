@@ -52,16 +52,6 @@ with tab3:
     st.header("Team")
     name = st.text_input("Name", value="", key="Name")
     rate = st.number_input("Rate", value=0.00, key="Rate")
-    
-    if 'save_button' not in st.session_state:
-        st.session_state.disabled = False
-        
-    save_button = st.button("Save member", key='save_button', disabled=st.session_state.disabled)
-    
-    if save_button:
-        if name and rate:
-            msg = insert_resource(name, rate)
-            st.success(msg, icon="✅")
 
     resource_list = get_all_resources()
     #st.dataframe(resource_list.style.format({"Rate": "{:.2f}"}), use_container_width=True)
@@ -76,10 +66,17 @@ with tab3:
     selected_row = grid_table["selected_rows"]
     st.dataframe(selected_row)
     
-    st.write(type(selected_row))
-    st.write(len(selected_row))
-    
     if len(selected_row) > 1:
         st.session_state.disabled = True
     else:
         st.session_state.disabled = False
+
+    if 'save_button' not in st.session_state:
+        st.session_state.disabled = False
+        
+    save_button = st.button("Save member", key='save_button', disabled=st.session_state.disabled)
+    
+    if save_button:
+        if name and rate:
+            msg = insert_resource(name, rate)
+            st.success(msg, icon="✅")
