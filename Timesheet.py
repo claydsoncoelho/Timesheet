@@ -71,6 +71,8 @@ with tab3:
 
     grid_table = AgGrid(resource_list, gridOptions=gridoptions, update_mode=GridUpdateMode.SELECTION_CHANGED)
     
+    selected_row = grid_table["selected_rows"]
+    
     if len(selected_row) == 0:
         st.session_state.disabled_delete = True
         st.session_state.disabled_save = False
