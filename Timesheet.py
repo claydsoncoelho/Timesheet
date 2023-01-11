@@ -54,7 +54,7 @@ with tab3:
     rate = st.number_input("Rate", value=0.00, key="Rate")
     
     if 'save_button' not in st.session_state:
-        st.session_state.disabled = True
+        st.session_state.disabled = False
         
     save_button = st.button("Save member", key='save_button', disabled=st.session_state.disabled)
     
