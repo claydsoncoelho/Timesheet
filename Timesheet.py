@@ -10,7 +10,7 @@ tab1, tab2, tab3 = st.tabs(["Time Entry", "Reports", "Team"])
 def insert_resource(name, rate):
     cnx = snowflake.connector.connect(**st.secrets["snowflake"])
     with cnx.cursor() as my_cur:
-        sql_cmd = "INSERT INTO DB_TIMESHEET.PUBLIC.RESOURCES VALUES('" + name + "', " + str(rate) + ")"
+        sql_cmd = "INSERT INTO TIMESHEET_DB.PUBLIC.RESOURCES VALUES('" + name + "', " + str(rate) + ")"
         my_cur.execute(sql_cmd)
     cnx.close()
     return name + " | " + str(rate)
@@ -19,7 +19,7 @@ def insert_resource(name, rate):
 def get_all_resources():
     cnx = snowflake.connector.connect(**st.secrets["snowflake"])
     with cnx.cursor() as my_cur:
-        sql_cmd = "SELECT NAME, RATE FROM DB_TIMESHEET.PUBLIC.RESOURCES"
+        sql_cmd = "SELECT NAME, RATE FROM TIMESHEET_DB.PUBLIC.RESOURCES"
         my_cur.execute(sql_cmd)
         my_data = my_cur.fetchall()
         name_list = []
